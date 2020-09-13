@@ -1,8 +1,11 @@
+const { json } = require('express')
+const db = require('../models/models.js')
 const apiController = {}
 
 
 apiController.getEntry = (req, res, next) => {
     // insert query
+   
     console.log('inside apiController.getEntry')
     return next()
 }
