@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import TemporaryDrawer from './components/Sidebar.jsx';
 import OutlinedCard from './components/Cards.jsx';
 import Header from './components/Header.jsx';
-import LoginPage from './components/LoginPage.jsx';
+import SignIn from './components/SignIn.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class App extends Component {
             <OutlinedCard />
             <ButtonAppBar />
           </Switch> */}
-          <LoginPage />
+          <SignIn />
         </div>
       </BrowserRouter>
     );
