@@ -4,7 +4,9 @@ const saltRounds = 10
 
 
 const userController = {}
-// create new user
+
+
+// CREATE NEW USER
 userController.createUser = (req, res, next) => {
     // generate bcrypt password
     bcrypt.hash(req.body.password, saltRounds)
@@ -13,9 +15,8 @@ userController.createUser = (req, res, next) => {
         const addUser = 'INSERT INTO Users(username, password) VALUES($1,$2) RETURNING *'
         const userInfo = [req.body.username, hash]
         db.query(addUser, userInfo, (err, newUser) => {
-            if (err) {
-              return next(err)
-            } else {
+            if (err) return next(err)
+            else {
                 // pass db user ID to generate SSID cookie 
                 res.locals.id = newUser.rows[0].id
                 return next()
@@ -24,24 +25,26 @@ userController.createUser = (req, res, next) => {
     })
 }
 
-// login user 
-userController.verifyUser = (req, res, next) => {
-    
-    db.query('SELECT * FROM Users')
-    .then(result => console.log(result.rows))
+// LOGIN USER
+userController.loginUser = (req, res, next) => {
+    const text = 'SELECT * FROM Users WHERE username=($1)'
+    const username = [req.body.username]
+    // verify username in db
+    db.query(text, username, (err, result) => {
 
-    // query database for user with req.body user data
-        // err handler 
-        // if username does not exists - send no username found, request signup
-        // if user exists 
-            // compare query password to req.body user data.password
-                // if passwords match - return next()
-                // else send incorrect password 
-    console.log('inside userController.loginUser')
-    return next()
-} 
-
-// logout user
+        if (err) return next(err)
+        else if (result.rows.length === 0) res.send('User does not exist. Try again!')
+        else if (result.rows[0].username !== req.body.username) res.send('Incorrect username. Try again!')
+        else {
+            res.locals.id = result.rows[0].id
+            console.log(result)
+            return next()
+            }
+        }  
+    )
+}
+        
+// LOGOUT USER
 userController.logoutUser = (req, res, next) => {
     console.log('inside userController.logoutUser')
     return next()

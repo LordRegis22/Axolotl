@@ -16,7 +16,7 @@ router.post('/',
 
 // LOGIN USER
 router.get('/',
-  userController.verifyUser,
+  userController.loginUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,
   (req, res)=>{res.status(200).send('successfully login user')})

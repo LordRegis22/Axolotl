@@ -5,7 +5,6 @@ const apiController = {}
 
 apiController.getEntry = (req, res, next) => {
     // insert query
-   
     console.log('inside apiController.getEntry')
     return next()
 }

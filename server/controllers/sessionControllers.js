@@ -14,7 +14,8 @@ sessionControllers.startSession = (req, res, next) => {
     //             }
     //         }
     //     )
-    // }
+    return next()
+    }
 
 sessionControllers.isLoggedIn = (req, res, next) => {
     // if req.cookies has ssid 
