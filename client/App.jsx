@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import TemporaryDrawer from './components/Sidebar.jsx'
+import OutlinedCard from './components/Cards.jsx';
+import Header from './components/Header.jsx';
 
 
 
@@ -10,8 +12,10 @@ class App extends Component {
   render() {
     return (
     <div>
+      <Header />
       <TemporaryDrawer />
-    <h1>Axolotl</h1>
+      <OutlinedCard />
+      {/* <ButtonAppBar/> */}
     </div>
     )
   }
