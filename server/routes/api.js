@@ -6,7 +6,7 @@ const apiController = require('../controllers/apiControllers.js')
 const router = express.Router()
 
 
-// retrieve entry from database
+// get entry from database
 router.get('/', 
   apiController.getEntry,
   (req, res)=>{ res.status(200).send('successful entry query')})
@@ -25,5 +25,13 @@ router.put('/',
 router.delete('/',
   apiController.deleteEntry, 
   (req, res)=>{ res.status(200).send('successful entry deleted')})
+
+// get all technologies from database
+router.getTechnologies('/technology',    
+(req, res)=>{ res.status(200).send('successful technologies query')}))
+
+// add new technology to database
+router.addTechnology('/technology',   
+(req, res)=>{ res.status(200).send('successful technology creation')})
 
 module.exports = router
