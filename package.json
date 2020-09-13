@@ -21,8 +21,12 @@
   },
   "homepage": "https://github.com/AXL-Dev/Axolotl#readme",
   "dependencies": {
+<<<<<<< HEAD
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+=======
+    "bcrypt": "^5.0.0",
+>>>>>>> master
     "express": "^4.17.1",
     "pg": "^8.3.3",
     "react": "^16.13.1",
