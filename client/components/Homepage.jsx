@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
 import TemporaryDrawer from './components/Sidebar.jsx';
 import OutlinedCard from './components/Cards.jsx';
 import Header from './components/Header.jsx';
-import LoginPage from './components/LoginPage.jsx';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
-class App extends Component {
+class HomePage extends Component {
   constructor(props) {
     super(props);
   }
@@ -15,16 +14,10 @@ class App extends Component {
         <div>
           <Header />
           <TemporaryDrawer />
-          {/* <Switch>
-            <Route exact path='/user' component={LoginPage} />
-            <OutlinedCard />
-            <ButtonAppBar />
-          </Switch> */}
-          <LoginPage />
         </div>
       </BrowserRouter>
     );
   }
 }
 
-export default App;
+export default HomePage;

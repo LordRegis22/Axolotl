@@ -1,7 +1,8 @@
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 const titleStyle = {
-  color: "#00bfff"
-}
+  color: '#00bfff',
+};
 
 import React, { Component } from 'react';
 import '../style.css';
@@ -15,7 +16,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import Avatar from '@material-ui/core/Avatar';
-import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import {
+  createStyles,
+  Theme,
+  withStyles,
+  WithStyles,
+} from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 
 // export default class Header extends Component {
@@ -37,27 +43,27 @@ import { makeStyles } from '@material-ui/core/styles';
 const Header = (props) => (
   <div className='navBar'>
     <ul className='navLeft'>
-      {/* <li>
-        <a to='/' style={{ color: 'blue' }}>
+      <li>
+        <Link to='/' style={{ color: 'blue' }}>
           Home
-        </a>
+        </Link>
       </li>
       <li>
-        <a to='/about' style={{ color: 'blue' }}>
+        <Link to='/' style={{ color: 'blue' }}>
           About
-        </a>
+        </Link>
       </li>
     </ul>
     <ul className='navRight'>
       <li>
-        <a to='/login' style={{ color: 'blue' }}>
+        <Link to='/' style={{ color: 'blue' }}>
           Login
-        </a>
-      </li> */}
+        </Link>
+      </li>
       <li>
-        <a to='/signup' style={{ color: 'blue' }}>
-          Logout
-        </a>
+        <Link to='/' style={{ color: 'blue' }}>
+          Sign Up
+        </Link>
       </li>
     </ul>
   </div>

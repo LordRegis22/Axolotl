@@ -16,6 +16,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 const useStyles = makeStyles({
   list: {
     width: 250,
+    paddingTop: '20px',
   },
   fullList: {
     width: 'auto',
@@ -32,7 +33,10 @@ export default function TemporaryDrawer() {
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
       return;
     }
 
@@ -44,33 +48,33 @@ export default function TemporaryDrawer() {
       className={clsx(classes.list, {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
-      role="presentation"
+      role='presentation'
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-     <ListItem button>
+      <ListItem button>
         <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>
-        <ListItemText primary="Home" />
+        <ListItemText primary='Home' />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <SearchIcon />
         </ListItemIcon>
-        <ListItemText primary="Search" />
+        <ListItemText primary='Search' />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <CreateIcon />
         </ListItemIcon>
-        <ListItemText primary="Create New" />
+        <ListItemText primary='Create New' />
       </ListItem>
       <ListItem button>
         <ListItemIcon>
           <SearchIcon />
         </ListItemIcon>
-        <ListItemText primary="Tags" />
+        <ListItemText primary='Tags' />
       </ListItem>
       {/* <Divider /> */}
     </div>
@@ -78,14 +82,19 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-      {['left'].map((anchor) => (
+      {[''].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}
-          <ListItemIcon>
-          <MenuIcon />
-        </ListItemIcon>
+          <Button onClick={toggleDrawer(anchor, true)}>
+            {anchor}
+            <ListItemIcon>
+              <MenuIcon className='menuIcon' />
+            </ListItemIcon>
           </Button>
-          <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
+          <Drawer
+            anchor={anchor}
+            open={state[anchor]}
+            onClose={toggleDrawer(anchor, false)}
+          >
             {list(anchor)}
           </Drawer>
         </React.Fragment>
