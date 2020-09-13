@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TemporaryDrawer from './components/Sidebar.jsx';
 import OutlinedCard from './components/Cards.jsx';
 import Header from './components/Header.jsx';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
@@ -13,7 +12,7 @@ class HomePage extends Component {
       <BrowserRouter>
         <div>
           <Header />
-          <TemporaryDrawer />
+          <OutlinedCard />
         </div>
       </BrowserRouter>
     );
