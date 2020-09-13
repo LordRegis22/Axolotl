@@ -27,11 +27,11 @@ router.delete('/',
   (req, res)=>{ res.status(200).send('successful entry deleted')})
 
 // get all technologies from database
-router.getTechnologies('/technology',    
-(req, res)=>{ res.status(200).send('successful technologies query')}))
+router.get('/technology', apiController.getTechnologies,    
+(req, res)=>{ res.status(200).send('successful technologies query')})
 
 // add new technology to database
-router.addTechnology('/technology',   
+router.post('/technology', apiController.addTechnology,
 (req, res)=>{ res.status(200).send('successful technology creation')})
 
 module.exports = router

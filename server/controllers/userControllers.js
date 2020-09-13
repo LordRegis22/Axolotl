@@ -11,7 +11,7 @@ userController.createUser = (req, res, next) => {
     // generate bcrypt password
     bcrypt.hash(req.body.password, saltRounds)
     .then(hash => {
-        // add new user to db
+        // add new user to database
         const addUser = 'INSERT INTO Users(username, password) VALUES($1,$2) RETURNING *'
         const userInfo = [req.body.username, hash]
         db.query(addUser, userInfo, (err, newUser) => {
@@ -29,7 +29,7 @@ userController.createUser = (req, res, next) => {
 userController.loginUser = (req, res, next) => {
     const text = 'SELECT * FROM Users WHERE username=($1)'
     const username = [req.body.username]
-    // verify username in db
+    // verify username in database
     db.query(text, username, (err, result) => {
 
         if (err) return next(err)
