@@ -5,11 +5,6 @@ const helperFunctions = require('./helperFunctions.js');
 
 // create new array of objects with properties of technologyName and technologyURL for each item in tech_stack array
 
-apiController.getEntry = (req, res, next) => {
-  console.log('inside apiController.getEntry');
-  return next();
-};
-
 // return all entries in database
 apiController.getAllEntries = (req, res, next) => {
   helperFunctions.getLatestUser('allEntries', 0, req, res, next);

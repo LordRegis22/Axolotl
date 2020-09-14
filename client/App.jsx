@@ -7,6 +7,7 @@ import { setAllCards } from './actions/action.js';
 import * as actions from './actions/action.js';
 import { connect } from 'react-redux';
 import SignUp from './components/SignUp.jsx';
+
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,6 +19,8 @@ import { MultipleSelect } from './components/DropdownMenu.jsx';
 const mapStateToProps = (state) => ({
   cardList: state.cardList,
   newSearch: state.newSearch,
+
+  loggedIn: state.loggedIn,
   cardList: state.cardList,
   currentUser: state.currentUser,
   name: state.name,
@@ -68,6 +71,7 @@ class App extends Component {
   }
 
   render() {
+
     const cards = this.props.readyToDisplay ? (
       this.props.cardList.map((card) => (
         <OutlinedCard
@@ -76,24 +80,16 @@ class App extends Component {
         ></OutlinedCard>
       ))
     ) : (
-      <h1>LOADING LOADING LOADING LOADING</h1>
+      <h1>LOADING...</h1>
     );
+
     return (
       <BrowserRouter>
         <div>
           <Header />
           <Switch>
-            <Route
-              exact
-              path='/'
-              render={(props) => (
-                <Fragment>
-                  <h1>Welcome!</h1>
-                  <h1> Please Log In</h1>
-                </Fragment>
-              )}
-            />
-            <Route exact path='/signin' component={SignIn} />
+            <Route exact path='/user' component={SignIn} />
+            <Route exact path='/signup' component={SignUp} />
           </Switch>
           <button
             onClick={() =>
@@ -108,13 +104,11 @@ class App extends Component {
           >
             <h1>CREATE</h1>
           </button>
-
           <br />
           <br />
           <br />
           <br />
           <br />
-
           <Switch>
             <Link to='/new'>
               <Button
@@ -128,7 +122,6 @@ class App extends Component {
               <Route exact path='/new' component={CreateCardForm} />
             </Link>
           </Switch>
-
           <form
             style={classes.form}
             // onSubmit={handleSubmit}
@@ -158,8 +151,8 @@ class App extends Component {
             />
           </form>
           <div className='card-display'>{cards}</div>
-
           {/* <TemporaryDrawer /> */}
+          {/* can use routes to pass down props from App.jsx */}
           {/* <Switch>
             <Route exact path='/user' component={LoginPage} />
             <OutlinedCard />

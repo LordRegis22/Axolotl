@@ -1,5 +1,4 @@
 import * as types from '../constants/actionTypes';
-
 const initialState = {
   loggedIn: false,
   staticCardList: [],
@@ -12,7 +11,7 @@ const initialState = {
   newDocumentation: 'www.yahoo.com',
   newLogin: '',
   newPassword: '',
-  readyToDisplay: false,
+    readyToDisplay: false,
   technologies: [
     {
       technologyName: 'React',
@@ -86,6 +85,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         newSearch: action.payload,
         cardList: newCardList,
+      };
+
+    case types.SET_NEW_LOGIN:
+      return {
+        ...state,
+        newLogin: action.payload,
       };
 
     default:

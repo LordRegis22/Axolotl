@@ -40,7 +40,6 @@ import { makeStyles } from '@material-ui/core/styles';
 //   }
 // }
 
-
 const Header = (props) => (
   <div className='navBar'>
     <ul className='navLeft'>
@@ -57,12 +56,12 @@ const Header = (props) => (
     </ul>
     <ul className='navRight'>
       <li>
-        <Link to='/signin' style={{ color: 'blue' }}>
+        <Link to='/user' style={{ color: 'blue' }}>
           Login
         </Link>
       </li>
       <li>
-        <Link to='/' style={{ color: 'blue' }}>
+        <Link to='/signup' style={{ color: 'blue' }}>
           Sign Up
         </Link>
       </li>

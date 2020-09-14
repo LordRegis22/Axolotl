@@ -1,11 +1,9 @@
 import * as types from '../constants/actionTypes.js';
 import axios from 'axios';
-
 //Making a fetch request to get all cards
 export const fetchAllCards = () => {
   return (dispatch) => {
     return axios.get('/api').then(({ data }) => {
-      console.log('hello', data);
       dispatch(setAllCards(data));
     });
   };
@@ -40,11 +38,10 @@ export const addCard = (card) => ({
   payload: card,
 });
 
-export const setNewSearch = (search) => ({
+export const addSearch = (search) => ({
   type: types.SET_NEW_SEARCH,
   payload: search,
 });
-
 export const deleteCard = (cardId) => {
   return (dispatch) => {
     return fetch('/api', {
@@ -55,18 +52,45 @@ export const deleteCard = (cardId) => {
       }),
     })
       .then((data) => data.json())
-      .then((data) => dispatch(removeCard(data.rows[0].id)));
+      .then((cardId) => dispatch(removeCard(cardId)));
   };
 };
-
 export const removeCard = (cardId) => ({
   type: types.REMOVE_CARD,
   payload: cardId,
 });
 
-export const newLogin = (login) => ({
+export const newLogin = (username) => ({
   type: types.SET_NEW_LOGIN,
-  payload: login,
+  payload: username,
+});
+
+export const setNewUser = (data) => ({
+  type: types.SET_NEW_USER,
+  payload: data,
+});
+
+// USER SIGN UP
+export const signupUser = (username) => {
+  console.log(username);
+  return (dispatch) => {
+    console.log('before fetch');
+    return fetch('/user', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: username,
+        password: 'testtest',
+      }),
+    })
+      .then((data) => data.json())
+      .then((data) => dispatch(setNewUser(data)));
+  };
+};
+
+export const setNewSearch = (search) => ({
+  type: types.SET_NEW_SEARCH,
+  payload: search,
 });
 
 // sign up: /user POST
