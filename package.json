@@ -21,6 +21,9 @@
   },
   "homepage": "https://github.com/AXL-Dev/Axolotl#readme",
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "axios": "^0.20.0",
     "bcrypt": "^5.0.0",
     "express": "^4.17.1",
     "pg": "^8.3.3",
@@ -30,6 +33,7 @@
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
     "sass": "^1.26.10"
   },
   "devDependencies": {

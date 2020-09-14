@@ -1,28 +1,37 @@
-const express = require('express')
-const path = require('path')
+const express = require('express');
+const path = require('path');
 
-const userController = require('../controllers/userControllers.js')
-const cookieController = require('../controllers/cookieControllers.js')
-const sessionController = require('../controllers/sessionControllers.js')
+const userController = require('../controllers/userControllers.js');
+const cookieController = require('../controllers/cookieControllers.js');
+const sessionController = require('../controllers/sessionControllers.js');
 
-const router = express.Router()
+const router = express.Router();
 
-// CREATE USER 
-router.post('/', 
-  userController.createUser, 
-  cookieController.setSSIDCookie, 
+// CREATE USER
+router.post(
+  '/',
+  userController.createUser,
+  cookieController.setSSIDCookie,
   sessionController.startSession,
-  (req, res)=>{res.status(200).send('successfully created user')})
+  (req, res) => {
+    res.status(200).send('successfully created user');
+  }
+);
 
 // LOGIN USER
-router.get('/',
+router.get(
+  '/',
   userController.loginUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,
-  (req, res)=>{res.status(200).send('successfully login user')})
+  (req, res) => {
+    res.status(200).send('successfully login user');
+  }
+);
 
 // LOGOUT USER - may not use?
-router.get('/', userController.logoutUser, (req, res)=>{
-    res.status(200).send('successfully logout user')})
+router.get('/', userController.logoutUser, (req, res) => {
+  res.status(200).send('successfully logout user');
+});
 
-module.exports = router
+module.exports = router;
