@@ -5,6 +5,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+// import { makeStyles } from '@material-ui/core/styles';
+
 
 //styling 
 const useStyles = makeStyles({
@@ -32,27 +34,27 @@ export default function OutlinedCard(props) {
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-        {/* <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Problem
-        </Typography> */}
         <Typography variant="h5" component="h2">
-          Problem
-          {/* {props.cardList.error_message} */}
+          {props.cardList.error_message}
         </Typography>
         <Typography variant="body2" component="p">
-          How it was solved
+          {props.cardList.resolution}
+        </Typography>
+        <Typography variant="body2" component="p" color="textSecondary">
+         {/* Tech used: {props.cardList.tech_stack} */}
         </Typography>
         <br />
         <Typography variant="body2" component="p" color="textSecondary">
           By: Username
         </Typography>
         <Typography variant="body2" component="p" color="textSecondary">
-          Date
+        {props.cardList.created_at}
         </Typography>
+        {/* {console.log(props.cardList.tech_stack[1])} */}
       </CardContent>
       <CardActions>
-        <Button size="small" color="primary">Read More</Button>
-        <Button size="small" color="primary">Docs</Button>
+        {/* <Button size="small" color="primary">Read More</Button> */}
+        <Button size="small" color="primary" href={props.cardList.documentation} target="_blank">Docs</Button>
       </CardActions>
     </Card>
   );

@@ -14,7 +14,7 @@ router.post(
   cookieController.setSSIDCookie,
   sessionController.startSession,
   (req, res) => {
-    res.status(200).send('successfully created user');
+    res.status(200).json(res.locals.id);
   }
 );
 
