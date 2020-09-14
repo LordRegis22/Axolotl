@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    backgroundColor: "rgb(248,248,255)"
   },
   bullet: {
     display: 'inline-block',
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OutlinedCard() {
+export default function OutlinedCard(props) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -35,6 +36,7 @@ export default function OutlinedCard() {
         </Typography> */}
         <Typography variant="h5" component="h2">
           Problem
+          {/* {props.cardList.error_message} */}
         </Typography>
         <Typography variant="body2" component="p">
           How it was solved

@@ -40,6 +40,7 @@ import { makeStyles } from '@material-ui/core/styles';
 //   }
 // }
 
+
 const Header = (props) => (
   <div className='navBar'>
     <ul className='navLeft'>
