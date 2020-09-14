@@ -7,12 +7,11 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 // import { makeStyles } from '@material-ui/core/styles';
 
-
-//styling 
+//styling
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    backgroundColor: "rgb(248,248,255)"
+    backgroundColor: 'rgb(248,248,255)',
   },
   bullet: {
     display: 'inline-block',
@@ -32,29 +31,36 @@ export default function OutlinedCard(props) {
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <Card className={classes.root} variant="outlined">
+    <Card className={classes.root} variant='outlined'>
       <CardContent>
-        <Typography variant="h5" component="h2">
+        <Typography variant='h5' component='h2'>
           {props.cardList.error_message}
         </Typography>
-        <Typography variant="body2" component="p">
+        <Typography variant='body2' component='p'>
           {props.cardList.resolution}
         </Typography>
-        <Typography variant="body2" component="p" color="textSecondary">
-         {/* Tech used: {props.cardList.tech_stack} */}
+        <Typography variant='body2' component='p' color='textSecondary'>
+          {/* Tech used: {props.cardList.tech_stack} */}
         </Typography>
         <br />
-        <Typography variant="body2" component="p" color="textSecondary">
+        <Typography variant='body2' component='p' color='textSecondary'>
           By: Username
         </Typography>
-        <Typography variant="body2" component="p" color="textSecondary">
-        {props.cardList.created_at}
+        <Typography variant='body2' component='p' color='textSecondary'>
+          {props.cardList.created_at}
         </Typography>
         {/* {console.log(props.cardList.tech_stack[1])} */}
       </CardContent>
       <CardActions>
         {/* <Button size="small" color="primary">Read More</Button> */}
-        <Button size="small" color="primary" href={props.cardList.documentation} target="_blank">Docs</Button>
+        <Button
+          size='small'
+          color='primary'
+          href={props.cardList.documentation}
+          target='_blank'
+        >
+          Docs
+        </Button>
       </CardActions>
     </Card>
   );

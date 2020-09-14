@@ -6,27 +6,39 @@ import SignIn from './components/SignIn.jsx';
 import { setAllCards } from './actions/action.js';
 import * as actions from './actions/action.js';
 import { connect } from 'react-redux';
-import SignUp from './components/SignUp.jsx'
+import SignUp from './components/SignUp.jsx';
+import Test from './components/Test.jsx';
+import Axios from 'axios';
 
 // import HomePage from './components/Homepage.jsx';
 
 const mapStateToProps = (state) => ({
   cardList: state.cardList,
   newSearch: state.newSearch,
-})
+  loggedIn: state.loggedIn,
+  cardList: state.cardList,
+  currentUser: state.currentUser,
+  name: state.name,
+  newSearch: state.newSearch,
+  newErrorMessage: state.newErrorMessage,
+  newTechStack: state.newTechStack,
+  newResolution: state.newResolution,
+  newDocumentation: state.newDocumentation,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   fetchAllCards: () => dispatch(actions.fetchAllCards()),
+  createCard: (card) => dispatch(actions.createCard(card)),
   addCard: (id) => dispatch(actions.addCard(id)),
+  deleteCard: (id) => dispatch(actions.deleteCard(id)),
   updateNewSearch: (search) => dispatch(actions.addSearch(search)),
-})
-
+});
 
 //-----------------styling -------------------//
 const classes = {
   form: {
-    display: "flex",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center',
     paddingTop: 40,
     paddingBottom: 30,
   },
@@ -36,10 +48,10 @@ const classes = {
     height: 40,
     fontSize: 16,
     borderRadius: 15,
-    color: "#6c6c6c",
-    border: 0
-   },
-}
+    color: '#6c6c6c',
+    border: 0,
+  },
+};
 
 //------------------------------------------------//
 
@@ -47,19 +59,11 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchAllCards();
   }
 
- 
-
   render() {
-   // Window.pageYOffsetY > 200px
-    const cards = []
-    for (let el of this.props.cardList)
-    { cards.push(<OutlinedCard 
-      cardList={el}
-    />)}
     return (
       <BrowserRouter>
         <div>
@@ -77,31 +81,56 @@ class App extends Component {
             />
             <Route exact path='/signin' component={SignIn} />
           </Switch>
-          <br/>
+          <button
+            onClick={() =>
+              this.props.createCard({
+                creator: this.props.currentUser.userId,
+                errorMsg: this.props.newErrorMessage,
+                resolution: this.props.newResolution,
+                documentation: this.props.newDocumentation,
+                techStack: this.props.newTechStack,
+              })
+            }
+          >
+            <h1>CREATE</h1>
+          </button>
+          <button onClick={() => this.props.deleteCard(42)}>
+            <h1>DELETE</h1>
+          </button>
           <br />
           <br />
           <br />
           <br />
-          <form 
-        style={classes.form}
-        // onSubmit={handleSubmit}
-        >
-        <label>
-          <input
-            style={{width: "450px", height:"40px", outline:"none", fontSize:"16px", borderRadius:"15px", border:'1px solid #6c6c6c', backgroundColor:"	rgb(248,248,255)"}}
-            placeholder=" Search an error message "
-            type="text"
-            // value={}
-            // onChange={e => setNewToDo(e.target.value)}
-          />
-           </label>
-           <input
-            style={classes.submitBtn}
-            // ref={ref}
-           type="submit" value="Search"/>
-        </form>
-       
-          {cards}
+          <br />
+          <form
+            style={classes.form}
+            // onSubmit={handleSubmit}
+          >
+            <label>
+              <input
+                style={{
+                  width: '450px',
+                  height: '40px',
+                  outline: 'none',
+                  fontSize: '16px',
+                  borderRadius: '15px',
+                  border: '1px solid #6c6c6c',
+                  backgroundColor: '	rgb(248,248,255)',
+                }}
+                placeholder=' Search an error message '
+                type='text'
+                // value={}
+                // onChange={e => setNewToDo(e.target.value)}
+              />
+            </label>
+            <input
+              style={classes.submitBtn}
+              // ref={ref}
+              type='submit'
+              value='Search'
+            />
+          </form>
+
           {/* <TemporaryDrawer /> */}
           {/* <Switch>
             <Route exact path='/user' component={LoginPage} />
