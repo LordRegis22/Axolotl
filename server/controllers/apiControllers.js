@@ -5,11 +5,6 @@ const helperFunctions = require('./helperFunctions.js');
 
 // create new array of objects with properties of technologyName and technologyURL for each item in tech_stack array
 
-apiController.getEntry = (req, res, next) => {
-  console.log('inside apiController.getEntry');
-  return next();
-};
-
 // return all entries in database
 apiController.getAllEntries = (req, res, next) => {
   helperFunctions.getLatestUser('allEntries', 0, req, res, next);
@@ -132,22 +127,21 @@ apiController.deleteEntry = (req, res, next) => {
 
 // Get ALL technologies from database
 apiController.getTechnologies = (req, res, next) => {
-    db.query('SELECT * FROM Technologies', null, (err, result) => {
-        if (err) return next(err)
-        res.send(result.rows)
-    })
-}
-
+  db.query('SELECT * FROM Technologies', null, (err, result) => {
+    if (err) return next(err);
+    res.send(result.rows);
+  });
+};
 
 apiController.addTechnology = (req, res, next) => {
-    const query = 'INSERT INTO Technologies(technology_name, documentation) VALUES($1,$2) RETURNING *'
-    const values = [req.body.technology_name, req.body.documentation]
-    db.query(query, values, (err, result) => {
-        if (err) return next(err)
-        res.send(result.rows)
-    })
-}
+  const query =
+    'INSERT INTO Technologies(technology_name, documentation) VALUES($1,$2) RETURNING *';
+  const values = [req.body.technology_name, req.body.documentation];
+  db.query(query, values, (err, result) => {
+    if (err) return next(err);
+    res.send(result.rows);
+  });
+};
 
-
-module.exports = apiController
+module.exports = apiController;
 module.exports = apiController;
