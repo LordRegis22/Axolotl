@@ -6,9 +6,10 @@ const apiController = require('../controllers/apiControllers.js');
 const router = express.Router();
 
 // get entry from database
-router.get('/', 
-  apiController.getEntry,
-  (req, res)=>{ res.status(200).send('successful entry query')})
+// router.get('/', 
+//   apiController.getEntry,
+//   (req, res)=>{ res.status(200).send('successful entry query')})
+
 // retrieve entry from database
 router.get('/', apiController.getAllEntries, (req, res) => {
   res.status(200).send(res.locals.allEntries);

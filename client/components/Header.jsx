@@ -57,7 +57,7 @@ const Header = (props) => (
     </ul>
     <ul className='navRight'>
       <li>
-        <Link to='/' style={{ color: 'blue' }}>
+        <Link to='/signin' style={{ color: 'blue' }}>
           Login
         </Link>
       </li>
