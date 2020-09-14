@@ -4,15 +4,16 @@ import axios from 'axios';
 export const fetchAllCards = () => {
   return (dispatch) => {
     return axios.get('/api').then(({ data }) => {
-      // console.log('hello', data);
       dispatch(setAllCards(data));
     });
   };
 };
+
 export const setAllCards = (data) => ({
   type: types.SET_ALL_CARDS,
   payload: data,
 });
+
 export const createCard = (card) => {
   //console.log(card);
   return (dispatch) => {
@@ -31,10 +32,12 @@ export const createCard = (card) => {
       .then((card) => dispatch(addCard(card)));
   };
 };
+
 export const addCard = (card) => ({
   type: types.ADD_CARD,
   payload: card,
 });
+
 export const addSearch = (search) => ({
   type: types.SET_NEW_SEARCH,
   payload: search,
@@ -84,6 +87,11 @@ export const signupUser = (username) => {
       .then((data) => dispatch(setNewUser(data)));
   };
 };
+
+export const setNewSearch = (search) => ({
+  type: types.SET_NEW_SEARCH,
+  payload: search,
+});
 
 // sign up: /user POST
 // log in: /user GET
