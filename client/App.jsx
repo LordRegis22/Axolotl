@@ -7,15 +7,17 @@ import { setAllCards } from './actions/action.js';
 import * as actions from './actions/action.js';
 import { connect } from 'react-redux';
 import SignUp from './components/SignUp.jsx';
-import Test from './components/Test.jsx';
-import Axios from 'axios';
+import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import { CreateCardForm } from './components/CreateCardForm.jsx';
+import { MultipleSelect } from './components/DropdownMenu.jsx';
 
 // import HomePage from './components/Homepage.jsx';
 
 const mapStateToProps = (state) => ({
   cardList: state.cardList,
   newSearch: state.newSearch,
-  loggedIn: state.loggedIn,
   cardList: state.cardList,
   currentUser: state.currentUser,
   name: state.name,
@@ -24,6 +26,8 @@ const mapStateToProps = (state) => ({
   newTechStack: state.newTechStack,
   newResolution: state.newResolution,
   newDocumentation: state.newDocumentation,
+  readyToDisplay: state.readyToDisplay,
+  technologies: state.technologies,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -31,7 +35,7 @@ const mapDispatchToProps = (dispatch) => ({
   createCard: (card) => dispatch(actions.createCard(card)),
   addCard: (id) => dispatch(actions.addCard(id)),
   deleteCard: (id) => dispatch(actions.deleteCard(id)),
-  updateNewSearch: (search) => dispatch(actions.addSearch(search)),
+  setNewSearch: (search) => dispatch(actions.setNewSearch(search)),
 });
 
 //-----------------styling -------------------//
@@ -64,6 +68,16 @@ class App extends Component {
   }
 
   render() {
+    const cards = this.props.readyToDisplay ? (
+      this.props.cardList.map((card) => (
+        <OutlinedCard
+          cardList={card}
+          deleteCard={this.props.deleteCard}
+        ></OutlinedCard>
+      ))
+    ) : (
+      <h1>LOADING LOADING LOADING LOADING</h1>
+    );
     return (
       <BrowserRouter>
         <div>
@@ -94,14 +108,27 @@ class App extends Component {
           >
             <h1>CREATE</h1>
           </button>
-          <button onClick={() => this.props.deleteCard(42)}>
-            <h1>DELETE</h1>
-          </button>
+
           <br />
           <br />
           <br />
           <br />
           <br />
+
+          <Switch>
+            <Link to='/new'>
+              <Button
+                variant='contained'
+                color='secondary'
+                className={classes.button}
+                startIcon={<AddIcon></AddIcon>}
+              >
+                New
+              </Button>
+              <Route exact path='/new' component={CreateCardForm} />
+            </Link>
+          </Switch>
+
           <form
             style={classes.form}
             // onSubmit={handleSubmit}
@@ -119,8 +146,8 @@ class App extends Component {
                 }}
                 placeholder=' Search an error message '
                 type='text'
-                // value={}
-                // onChange={e => setNewToDo(e.target.value)}
+                value={this.props.newSearch}
+                onChange={(e) => this.props.setNewSearch(e.target.value)}
               />
             </label>
             <input
@@ -130,6 +157,7 @@ class App extends Component {
               value='Search'
             />
           </form>
+          <div className='card-display'>{cards}</div>
 
           {/* <TemporaryDrawer /> */}
           {/* <Switch>

@@ -40,7 +40,7 @@ export const addCard = (card) => ({
   payload: card,
 });
 
-export const addSearch = (search) => ({
+export const setNewSearch = (search) => ({
   type: types.SET_NEW_SEARCH,
   payload: search,
 });
@@ -55,13 +55,18 @@ export const deleteCard = (cardId) => {
       }),
     })
       .then((data) => data.json())
-      .then((cardId) => dispatch(removeCard(cardId)));
+      .then((data) => dispatch(removeCard(data.rows[0].id)));
   };
 };
 
 export const removeCard = (cardId) => ({
   type: types.REMOVE_CARD,
   payload: cardId,
+});
+
+export const newLogin = (login) => ({
+  type: types.SET_NEW_LOGIN,
+  payload: login,
 });
 
 // sign up: /user POST
