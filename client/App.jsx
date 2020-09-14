@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import OutlinedCard from './components/Cards.jsx';
 import Header from './components/Header.jsx';
 import SignIn from './components/SignIn.jsx';
 import { setAllCards } from './actions/action.js';
 import * as actions from './actions/action.js';
 import { connect } from 'react-redux';
+import SignUp from './components/SignUp.jsx'
 
 // import HomePage from './components/Homepage.jsx';
 
@@ -15,7 +16,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  addCard : (id) => dispatch(actions.addCard(id)),
+  fetchAllCards: () => dispatch(actions.fetchAllCards()),
+  addCard: (id) => dispatch(actions.addCard(id)),
   updateNewSearch: (search) => dispatch(actions.addSearch(search)),
 })
 
@@ -46,16 +48,35 @@ class App extends Component {
     super(props);
   }
   componentDidMount () {
-    setAllCards();
-    console.log("I am here", this.props.HeadercardList)
+    this.props.fetchAllCards();
   }
 
-  render() {
+ 
 
+  render() {
+   // Window.pageYOffsetY > 200px
+    const cards = []
+    for (let el of this.props.cardList)
+    { cards.push(<OutlinedCard 
+      cardList={el}
+    />)}
     return (
       <BrowserRouter>
         <div>
           <Header />
+          <Switch>
+            <Route
+              exact
+              path='/'
+              render={(props) => (
+                <Fragment>
+                  <h1>Welcome!</h1>
+                  <h1> Please Log In</h1>
+                </Fragment>
+              )}
+            />
+            <Route exact path='/signin' component={SignIn} />
+          </Switch>
           <br/>
           <br />
           <br />
@@ -79,9 +100,8 @@ class App extends Component {
             // ref={ref}
            type="submit" value="Search"/>
         </form>
-          <OutlinedCard 
-            cardList={this.props.cardList}
-          />
+       
+          {cards}
           {/* <TemporaryDrawer /> */}
           {/* <Switch>
             <Route exact path='/user' component={LoginPage} />
