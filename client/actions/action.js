@@ -93,6 +93,26 @@ export const setNewSearch = (search) => ({
   payload: search,
 });
 
+export const setNewErrorMessage = (msg) => ({
+  type: types.SET_NEW_ERROR_MESSAGE,
+  payload: msg,
+});
+
+export const setNewResolution = (resolution) => ({
+  type: types.SET_NEW_RESOLUTION,
+  payload: resolution,
+});
+
+export const setNewDocumentation = (documentaion) => ({
+  type: types.SET_NEW_DOCUMENTATION,
+  payload: search,
+});
+
+export const setNewTechStack = (techId) => ({
+  type: types.SET_NEW_TECH_STACK,
+  payload: techId,
+});
+
 // sign up: /user POST
 // log in: /user GET
 // get new technologies: /api/technologies GET

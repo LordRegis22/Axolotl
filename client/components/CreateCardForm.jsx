@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     backgroundColor: 'rgb(248,248,255)',
+    padding: '1rem',
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -64,6 +65,7 @@ const MenuProps = {
 // />)}
 //--------------Form for creating a new card---------------//
 function CreateCardForm(props) {
+  console.log(props);
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -80,6 +82,9 @@ function CreateCardForm(props) {
             shrink: true,
           }}
           variant='outlined'
+          onChange={(e) => {
+            props.setNewErrorMessage(e.target.value);
+          }}
         />
         <TextField
           id='outlined-full-width'
@@ -93,6 +98,9 @@ function CreateCardForm(props) {
             shrink: true,
           }}
           variant='outlined'
+          onChange={(e) => {
+            props.setNewResolution(e.target.value);
+          }}
         />
         <TextField
           label='Link to Documentation'
@@ -101,9 +109,28 @@ function CreateCardForm(props) {
           className={classes.textField}
           // helperText="Some important text"
           variant='outlined'
+          onChange={(e) => {
+            props.setNewDocumentation(e.target.value);
+          }}
         />
-        <MultipleSelect technologies={props.technologies} />
-        <Button color='inherit'>Submit</Button>
+        <MultipleSelect
+          technologies={props.technologies}
+          setNewTechStack={props.setNewTechStack}
+        />
+        <Button
+          color='inherit'
+          onClick={() =>
+            props.createCard({
+              creator: props.currentUser.userId,
+              errorMsg: props.newErrorMessage,
+              resolution: props.newResolution,
+              documentation: props.newDocumentation,
+              techStack: props.newTechStack,
+            })
+          }
+        >
+          Submit
+        </Button>
       </div>
     </div>
   );

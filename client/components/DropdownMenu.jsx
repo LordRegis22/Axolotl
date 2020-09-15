@@ -52,19 +52,7 @@ const MenuProps = {
     },
   },
 };
-//------------------------------------------//
-// const names = [
-//   'Oliver Hansen',
-//   'Van Henry',
-//   'April Tucker',
-//   'Ralph Hubbard',
-//   'Omar Alexander',
-//   'Carlos Abbott',
-//   'Miriam Wagner',
-//   'Bradley Wilkerson',
-//   'Virginia Andrews',
-//   'Kelly Snyder',
-// ];
+
 function getStyles(name, personName, theme) {
   return {
     fontWeight:
@@ -85,13 +73,14 @@ function MultipleSelect(props) {
   };
   const handleChangeMultiple = (event) => {
     const { options } = event.target;
+    console.log(options);
     const value = [];
     for (let i = 0, l = options.length; i < l; i += 1) {
       if (options[i].selected) {
         value.push(options[i].value);
       }
     }
-    setPersonName(value);
+    props.setNewTechStack;
   };
 
   useEffect(() => {
@@ -114,7 +103,7 @@ function MultipleSelect(props) {
           id='demo-mutiple-checkbox'
           multiple
           value={personName}
-          onChange={handleChange}
+          onChange={handleChangeMultiple}
           input={<Input />}
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}

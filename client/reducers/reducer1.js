@@ -11,7 +11,7 @@ const initialState = {
   newDocumentation: 'www.yahoo.com',
   newLogin: '',
   newPassword: '',
-    readyToDisplay: false,
+  readyToDisplay: false,
   technologies: [
     {
       technologyName: 'React',
@@ -91,6 +91,29 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         newLogin: action.payload,
+      };
+
+    case types.SET_NEW_ERROR_MESSAGE:
+      return {
+        ...state,
+        newErrorMessage: action.payload,
+      };
+    case types.SET_NEW_RESOLUTION:
+      return {
+        ...state,
+        newResolution: action.payload,
+      };
+    case types.SET_NEW_TECH_STACK:
+      const updatedTechStack = [...newTechStack];
+      updatedTechStack.push(action.payload);
+      return {
+        ...state,
+        newTechStack: updatedTechStack,
+      };
+    case types.SET_NEW_DOCUMENTATION:
+      return {
+        ...state,
+        newDocumentation: action.payload,
       };
 
     default:

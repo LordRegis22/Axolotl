@@ -39,6 +39,12 @@ const mapDispatchToProps = (dispatch) => ({
   addCard: (id) => dispatch(actions.addCard(id)),
   deleteCard: (id) => dispatch(actions.deleteCard(id)),
   setNewSearch: (search) => dispatch(actions.setNewSearch(search)),
+  setNewErrorMessage: (message) =>
+    dispatch(actions.setNewErrorMessage(message)),
+  setNewResolution: (message) => dispatch(actions.setNewResolution(message)),
+  setNewDocumentation: (message) =>
+    dispatch(actions.setNewDocumentation(message)),
+  setNewTechStack: (message) => dispatch(actions.setNewTechStack(message)),
 });
 
 //-----------------styling -------------------//
@@ -71,7 +77,6 @@ class App extends Component {
   }
 
   render() {
-
     const cards = this.props.readyToDisplay ? (
       this.props.cardList.map((card) => (
         <OutlinedCard
@@ -91,24 +96,13 @@ class App extends Component {
             <Route exact path='/user' component={SignIn} />
             <Route exact path='/signup' component={SignUp} />
           </Switch>
-          <button
-            onClick={() =>
-              this.props.createCard({
-                creator: this.props.currentUser.userId,
-                errorMsg: this.props.newErrorMessage,
-                resolution: this.props.newResolution,
-                documentation: this.props.newDocumentation,
-                techStack: this.props.newTechStack,
-              })
-            }
-          >
-            <h1>CREATE</h1>
-          </button>
+
           <br />
           <br />
           <br />
           <br />
           <br />
+          <h1 class='title'>[ a x o l o t l ]</h1>
           <Switch>
             <Link to='/new'>
               <Button
@@ -119,7 +113,11 @@ class App extends Component {
               >
                 New
               </Button>
-              <Route exact path='/new' component={CreateCardForm} />
+              <Route
+                exact
+                path='/new'
+                render={(props) => <CreateCardForm {...this.props} />}
+              />
             </Link>
           </Switch>
           <form
@@ -130,12 +128,13 @@ class App extends Component {
               <input
                 style={{
                   width: '450px',
-                  height: '40px',
+                  height: '50px',
                   outline: 'none',
-                  fontSize: '16px',
+                  fontSize: '20px',
                   borderRadius: '15px',
                   border: '1px solid #6c6c6c',
                   backgroundColor: '	rgb(248,248,255)',
+                  padding: '2rem',
                 }}
                 placeholder=' Search an error message '
                 type='text'

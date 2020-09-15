@@ -89,7 +89,7 @@ class SignIn extends Component {
         />
         <button onClick={() => this.props.handleClick(this.props.newLogin)}>
           {' '}
-          Hello Jason
+          Sign Up
         </button>
       </div>
       // variant='outlined'

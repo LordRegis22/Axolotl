@@ -85,6 +85,12 @@ li {
   padding: 0px 30px;
 }
 
+.title {
+  color: white;
+  font-size: 4rem;
+  text-align: center;
+}
+
 .menuIcon {
   margin: 17px;
 }
